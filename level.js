@@ -30,7 +30,8 @@ class Level {
   timeLeft() {
     // TODO (Phase 5): Return the initial time minus the elapsed time, but
     // never less than zero.
-    return 0;
+    return Math.max(0, this.time.initial - this.time.elapsed);
+    
   }
 
   /**
@@ -48,7 +49,13 @@ class Level {
     //  - Lives: bottom left, one small Magpie for each spare life (lives - 1
     //    of them). Magpie.drawMagpie() draws around (0, 0), so translate and
     //    scale first.
-
+    textAlign(LEFT, TOP);
+    textSize(Level.HUD_TEXT_SIZE);
+    fill("#FFFF00")
+    const {minutes,seconds} = timeToStringParts(this.timeLeft());
+    text(`${minutes}:${seconds}`, Level.HUD_PAD, Level.HUD_PAD);
+    textAlign(RIGHT, TOP);
+    text(`${score}`,width - Level.HUD_PAD, Level.HUD_PAD);
     // junk
     for (const junk of this.junk) {
       junk.draw();

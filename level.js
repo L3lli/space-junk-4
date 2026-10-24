@@ -56,6 +56,18 @@ class Level {
     text(`${minutes}:${seconds}`, Level.HUD_PAD, Level.HUD_PAD);
     textAlign(RIGHT, TOP);
     text(`${score}`,width - Level.HUD_PAD, Level.HUD_PAD);
+
+    for(let i = 0; i < lives - 1; i++ ){
+      push();
+      translate(
+        Level.LIVES_PAD_LEFT + i * Level.LIVES_GAP,
+        height - Level.LIVES_PAD_BOTTOM);
+        scale(Level.LIVES_SCALE);
+        Magpie.drawMagpie();
+        pop();
+
+      
+    }
     // junk
     for (const junk of this.junk) {
       junk.draw();

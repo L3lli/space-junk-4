@@ -60,7 +60,7 @@ class Magpie {
   // this method is static. That means it doesn't use `this` to gain access to
   // instance members, because there _is_ no instance. This is essentially a
   // function that happens to be placed inside the Magpie namespace.
-  static drawMagpie({ rotation, beam }) {
+  static drawMagpie({ rotation = 0, beam = false } = {}) {
 
     // rectangle dome, a platform across the bottom of the dome, and a window
     // on the right side. Draw it around (0, 0), rotated by `rotation`, using

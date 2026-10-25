@@ -81,6 +81,7 @@ class Game {
       this.magpie.captureJunk(junk);
       this.level.removeJunk(junk);
     }
+    
 
     if (this.resolveDropoff(delta)) {
       this.magpie.capturedJunk = null; // delivered, so it disappears
@@ -131,6 +132,9 @@ class Game {
    * is delivered.
    **/
   resolveDropoff(delta) {
+    if (!this.magpie.capturedJunk) {
+       return false;
+    }
     // TODO (Phase 4): If the Magpie isn't carrying junk, return false. If
     // the carried junk is within Mothership.PICKUP_DIAMETER / 2 of the
     // Mothership, add delta to its dropoffTime. Otherwise, drain its
@@ -178,11 +182,11 @@ class Game {
     text(message, width / 2, height / 2);
     pop();
   }
-
+  
   updateScore(reason) {
     // TODO (Phase 4): When the reason is "dropoff", add Game.SCORE_DROPOFF
     // to the score.
-    if(reason === dropoff){
+    if(reason === "dropoff"){
       this.score += Game.SCORE_DROPOFF;
     }
   }
